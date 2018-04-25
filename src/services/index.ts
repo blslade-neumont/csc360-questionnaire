@@ -1,3 +1,3 @@
 
 
-export * from './github.service';
+export * from './questionnaire.service';
