@@ -6,6 +6,12 @@ export class Section implements QuestionnairePart {
     public static fromJson(json: any, parent: QuestionnairePart | null): QuestionnairePart {
         let section = new Section(parent);
         section._text = json.text;
+        
+        for (let partJson of json.parts || []) {
+            let part = QuestionnairePart.fromJson(partJson, section);
+            section.addChild(part);
+        }
+        
         return section;
     }
     

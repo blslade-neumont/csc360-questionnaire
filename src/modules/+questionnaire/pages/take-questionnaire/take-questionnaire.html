@@ -1,17 +1,49 @@
 <div class="container" *ngLet="(questionnaireObservable | async) as questionnaire">
     <div class="row">
         <div class="col-12" *ngIf="questionnaire; else notFound">
-            <h1 class="mt-3">{{questionnaire.name}}</h1>
+            <h1 class="mt-3">Taking Questionnaire</h1>
             
-            <p class="lead">...breadcrumbs</p>
+            <ng-container *ngIf="!isDone">
+                <p class="lead">
+                    <span *ngFor="let segment of breadcrumbs">>&nbsp;{{segment.getText()}}&nbsp;</span>
+                </p>
+                
+                <ng-container *ngIf="isSection">
+                    <p>
+                        Entering section {{currentPart.getText()}}.
+                    </p>
+                    
+                    <p>
+                        <button type="button" class="btn btn-primary btn-large" autofocus (click)="next()">Begin</button>
+                    </p>
+                </ng-container>
+                
+                <ng-container *ngIf="isQuestion">
+                    <p>
+                        {{currentPart.getText()}}
+                    </p>
+                    
+                    <form>
+                        <div class="btn-group btn-group-vertical btn-group-toggle">
+                            <label *ngFor="let answer of answers; let idx = index" class="btn btn-outline-secondary" [class.active]="selectedAnswer === answer">
+                                <input type="radio" [checked]="selectedAnswer === answer" value="answer" name="answer" (click)="selectedAnswer = answer" [autofocus]="idx === 0" /> {{answer}}
+                            </label>
+                        </div>
+                        
+                        <p class="mt-3">
+                            <button type="submit" class="btn btn-primary btn-large" (click)="next()">Submit</button>
+                        </p>
+                    </form>
+                </ng-container>
+            </ng-container>
             
-            <p>
-                Taking questionnaire
-            </p>
-            
-            <p>
-                Actions...
-            </p>
+            <ng-container *ngIf="isDone">
+                <p class="lead">You're all done!</p>
+                
+                <p>You answered {{correctCount}} questions correctly out of {{totalCount}}.</p>
+                
+                <button type="button" class="btn btn-primary" autofocus [routerLink]="['/q', 'list']">Return</button>
+            </ng-container>
         </div>
         
         <ng-template #notFound>
