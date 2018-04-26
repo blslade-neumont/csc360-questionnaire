@@ -2,7 +2,6 @@
     "rules": {
         "adjacent-overload-signatures": true,
         "no-magic-numbers": [false],
-        "no-var-requires": true,
         
         "no-console": [true],
         "no-debugger": true,
@@ -11,9 +10,6 @@
         "no-eval": true,
         
         "no-unused-expression": true,
-        // "no-unused-parameters": true,
-        // "no-unused-locals": true,
-        // "no-unused-new": true,
         "no-switch-case-fall-through": true
     }
 }
