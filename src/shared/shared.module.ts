@@ -6,9 +6,10 @@ import { CommonModule } from "@angular/common";
 import { HttpModule } from "@angular/http";
 
 //Declarations
+import { AutofocusDirective } from './directives/autofocus.directive';
 import { NgLet } from './directives/ng-let.directive';
 
-export const module_exports = [NgLet];
+export const module_exports = [AutofocusDirective, NgLet];
 
 const imported_modules = [FormsModule, CommonModule, HttpModule];
 export const exported_modules = [FormsModule, CommonModule, HttpModule];

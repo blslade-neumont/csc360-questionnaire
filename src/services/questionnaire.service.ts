@@ -33,4 +33,17 @@ export class QuestionnaireService {
             map(qs => !qs.some(q => q.slug === slug))
         );
     }
+    async create(name: string): Promise<Questionnaire> {
+        let q = new Questionnaire();
+        q.setText(name);
+        this.allQuestionnaires.push(q);
+        return q;
+    }
+    
+    async delete(slug: string): Promise<boolean> {
+        let idx = this.allQuestionnaires.findIndex(q => q.slug === slug);
+        if (idx === -1) return false;
+        this.allQuestionnaires.splice(idx, 1);
+        return true;
+    }
 }

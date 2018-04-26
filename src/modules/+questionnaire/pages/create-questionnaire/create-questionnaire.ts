@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { switchMap, startWith } from 'rxjs/operators';
 import { QuestionnaireService } from 'services';
@@ -12,7 +13,8 @@ import { ObservableInput } from 'utils';
 })
 export class CreateQuestionnaireComponent extends ComponentBase {
     constructor(
-        private questionnaireService: QuestionnaireService
+        private questionnaireService: QuestionnaireService,
+        private router: Router
     ) {
         super();
     }
@@ -30,5 +32,15 @@ export class CreateQuestionnaireComponent extends ComponentBase {
                 return this.questionnaireService.canCreateWithName(name).pipe(startWith(false));
             })
         );
+    }
+    
+    async create() {
+        let name = this.name;
+        let q = await this.questionnaireService.create(name);
+        if (!q) {
+            alert(`Failed to create questionnaire.`);
+            return;
+        }
+        this.router.navigate(['q', q.slug, 'edit']);
     }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { QuestionnaireService, QuestionnaireProvider } from 'services';
 import { Questionnaire } from 'models';
@@ -11,7 +12,8 @@ import { ComponentBase } from 'utils/components';
 export class ViewQuestionnaireComponent extends ComponentBase {
     constructor(
         private questionnaireProvider: QuestionnaireProvider,
-        private questionnaireService: QuestionnaireService
+        private questionnaireService: QuestionnaireService,
+        private router: Router
     ) {
         super();
     }
@@ -23,7 +25,12 @@ export class ViewQuestionnaireComponent extends ComponentBase {
         this.questionnaireObservable = this.questionnaireProvider.questionnaireObservable;
     }
     
-    deleteQuestionnaire() {
-        alert(`Deleting questionnaires is not yet supported.`);
+    async delete(q: Questionnaire) {
+        let deleted = await this.questionnaireService.delete(q.slug);
+        if (!deleted) {
+            alert(`Failed to delete questionnaire`);
+            return;
+        }
+        this.router.navigate(['/q', 'list']);
     }
 }
