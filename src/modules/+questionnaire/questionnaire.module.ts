@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+//Declarations
 import { QuestionnaireListComponent } from './pages/questionnaire-list/questionnaire-list';
 
 import { CreateQuestionnaireComponent } from './pages/create-questionnaire/create-questionnaire';
@@ -9,6 +10,10 @@ import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
 import { ViewQuestionnaireComponent } from './pages/view-questionnaire/view-questionnaire';
 import { TakeQuestionnaireComponent } from './pages/take-questionnaire/take-questionnaire';
 import { EditQuestionnaireComponent } from './pages/edit-questionnaire/edit-questionnaire';
+
+import { EditSectionComponent } from './components/edit-section/edit-section';
+import { EditQuestionComponent } from './components/edit-question/edit-question';
+import { EditQuestionnairePartComponent } from './components/edit-questionnaire-part/edit-questionnaire-part';
 
 //Imports
 import { SharedModule } from 'shared/shared.module';
@@ -31,7 +36,9 @@ const module_exports = [
     CreateQuestionnaireComponent,
     
     QuestionnaireComponent,
-    ViewQuestionnaireComponent, TakeQuestionnaireComponent, EditQuestionnaireComponent
+    ViewQuestionnaireComponent, TakeQuestionnaireComponent, EditQuestionnaireComponent,
+    
+    EditSectionComponent, EditQuestionComponent, EditQuestionnairePartComponent
 ];
 
 @NgModule({

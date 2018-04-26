@@ -1,18 +1,31 @@
 <div class="container" *ngLet="(questionnaireObservable | async) as questionnaire">
     <div class="row">
-        <div class="col-12" *ngIf="questionnaire; else notFound">
-            <h1 class="mt-3">{{questionnaire.name}}</h1>
+        <ng-container *ngIf="questionnaire; else notFound">
+            <div class="col-6">
+                <h1 class="mt-3">{{questionnaire.name}}</h1>
+                <p class="lead">Questionnaire Tree</p>
+                
+                <div>
+                    <edit-section [section]="questionnaire"></edit-section>
+                </div>
+            </div>
             
-            <p class="lead">Make your changes to the questionnaire</p>
-            
-            <p>
-                Editing questionnaire
-            </p>
-            
-            <p>
-                Actions...
-            </p>
-        </div>
+            <div class="col-6" *ngLet="(selectionObservable | async) as selection">
+                <h1 class="mt-3">Node Properties</h1>
+                
+                <ng-container *ngIf="selection; else noSelection">
+                    {{selection.getText()}}
+                    
+                    <p>
+                        Actions...
+                    </p>
+                </ng-container>
+                
+                <ng-template #noSelection>
+                    <p class="lead">Select a node on the left.</p>
+                </ng-template>
+            </div>
+        </ng-container>
         
         <ng-template #notFound>
             <div class="col-12">

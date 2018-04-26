@@ -1,0 +1,8 @@
+<div class="part-header" [class.selected]="isSelected" (click)="select()">
+    <strong>S</strong>: {{section?.getText()}}
+</div>
+<div class="section-body">
+    <ng-container *ngLet="section.getChildren() as children">
+        <edit-questionnaire-part *ngFor="let child of children" [part]="child"></edit-questionnaire-part>
+    </ng-container>
+</div>

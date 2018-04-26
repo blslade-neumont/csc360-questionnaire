@@ -35,6 +35,9 @@ export class Section implements QuestionnairePart {
         let idx = this._children.indexOf(child);
         if (idx !== -1) this._children.splice(idx, 1);
     }
+    getChildren() {
+        return this._children;
+    }
     
     *getParts(): IterableIterator<QuestionnairePart> {
         yield this;
