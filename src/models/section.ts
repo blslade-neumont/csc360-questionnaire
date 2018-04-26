@@ -1,18 +1,32 @@
 import { QuestionnairePart } from './questionnaire-part';
+import { Question } from './question';
 
-export class Section implements QuestionnairePart {
-    constructor(private parent: QuestionnairePart | null) { }
+export class Section extends QuestionnairePart {
+    constructor(private parent: QuestionnairePart | null) {
+        super();
+    }
     
     public static fromJson(json: any, parent: QuestionnairePart | null): QuestionnairePart {
         let section = new Section(parent);
         section._text = json.text;
-        
-        for (let partJson of json.parts || []) {
-            let part = QuestionnairePart.fromJson(partJson, section);
-            section.addChild(part);
-        }
-        
+        section.addChildrenFromJson(json.parts);
         return section;
+    }
+    protected addChildrenFromJson(parts: any = []) {
+        for (let partJson of parts) {
+            let part = Section.questionnairePartFromJson(partJson, this);
+            this.addChild(part);
+        }
+    }
+    private static questionnairePartFromJson(json: any, parent: QuestionnairePart | null): QuestionnairePart {
+        switch (json.type) {
+        case 'question':
+            return Question.fromJson(json, parent);
+        case 'section':
+            return Section.fromJson(json, parent);
+        default:
+            throw new Error(`Not supported`);
+        }
     }
     
     private _text: string = '';

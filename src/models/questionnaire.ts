@@ -9,15 +9,9 @@ export class Questionnaire extends Section {
     
     public static fromJson(json: any, parent: QuestionnairePart | null = null): Questionnaire {
         if (!json.name) throw new Error(`Not supported`);
-        
         let q = new Questionnaire();
         q.setText(json.name);
-        
-        for (let partJson of json.parts || []) {
-            let part = QuestionnairePart.fromJson(partJson, q);
-            q.addChild(part);
-        }
-        
+        q.addChildrenFromJson(json.parts);
         return q;
     }
     

@@ -1,8 +1,10 @@
 import { QuestionnairePart } from './questionnaire-part';
 import { shuffle } from 'utils';
 
-export class Question implements QuestionnairePart {
-    constructor(private parent: QuestionnairePart | null) { }
+export class Question extends QuestionnairePart {
+    constructor(private parent: QuestionnairePart | null) {
+        super();
+    }
     
     public static fromJson(json: any, parent: QuestionnairePart | null): QuestionnairePart {
         let question = new Question(parent);
@@ -12,7 +14,7 @@ export class Question implements QuestionnairePart {
     }
     
     private _text: string;
-    private _answers: string[];
+    private _answers: string[] = [];
     
     getText(): string {
         return this._text;
@@ -21,13 +23,20 @@ export class Question implements QuestionnairePart {
         this._text = val;
     }
     
-    getAnswers(): string[] {
+    getRandomizedAnswers(): string[] {
         let toReturn = [...this._answers];
         shuffle(toReturn);
         return toReturn;
     }
+    getAnswers(): string[] {
+        return this._answers;
+    }
     get correctAnswer() {
-        return this._answers[0];
+        return this._answers[0] || '';
+    }
+    set correctAnswer(val: string) {
+        if (this._answers.length === 0) this._answers.push(val);
+        else this._answers[0] = val;
     }
     
     getParent(): QuestionnairePart | null {

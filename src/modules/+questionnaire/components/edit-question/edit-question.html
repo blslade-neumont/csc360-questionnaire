@@ -3,5 +3,28 @@
 </div>
 
 <ng-template #editTemplate>
-    Edit question!
+    <form *ngLet="question.getAnswers() as answers">
+        <div class="form-group">
+            <label for="question-name">Question</label>
+            <input type="text" class="form-control" name="question-name" [(ngModel)]="question.text" autofocus />
+        </div>
+        
+        <div class="form-group">
+            <label for="correct-answer">Correct Answer</label>
+            <input type="text" class="form-control" name="correct-answer" [(ngModel)]="question.correctAnswer" />
+        </div>
+        
+        <div class="form-group">
+            <label for="incorrect-answers">Incorrect Answers</label>
+            <div class="clearfix" *ngFor="let answer of answers; let idx = index; trackBy: trackByIndex">
+                <input *ngIf="idx !== 0" type="text" class="form-control input-incorrect-answer" name="incorrect-answers{{idx}}" [(ngModel)]="answers[idx]" />
+                <button *ngIf="idx !== 0" type="button" class="btn btn-danger btn-remove-answer" (click)="removeIncorrectAnswer(idx)">Delete Answer</button>
+            </div>
+            <button type="button" class="btn btn-primary mt-3" (click)="addIncorrectAnswer()">Add Answer</button>
+        </div>
+        
+        <div class="form-group">
+            <button type="button" class="btn btn-danger" [disabled]="!question.getParent()" (click)="delete()">Delete</button>
+        </div>
+    </form>
 </ng-template>

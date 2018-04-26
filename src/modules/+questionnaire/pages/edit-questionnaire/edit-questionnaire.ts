@@ -20,7 +20,7 @@ export class EditQuestionnaireComponent extends ComponentBase implements OnInit 
     
     questionnaireObservable: Observable<Questionnaire | null>;
     selectionObservable: Observable<any>;
-    editTemplateObservable: Observable<TemplateRef<any>>;
+    editTemplateObservable: Observable<TemplateRef<any> | null>;
     
     ngOnInit() {
         super.ngOnInit();

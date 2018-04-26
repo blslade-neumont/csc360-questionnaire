@@ -1,7 +1,7 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SelectionProvider } from 'services';
-import { Section } from 'models';
+import { Section, Question } from 'models';
 import { ComponentBase } from 'utils/components';
 import { ObservableInput } from 'utils';
 
@@ -27,4 +27,23 @@ export class EditSectionComponent extends ComponentBase {
     
     @ObservableInput() @Input() section: Section;
     @Input('section-o') sectionObservable: Observable<Section>;
+    
+    delete() {
+        (<Section>this.section.getParent()).removeChild(this.section);
+        this.selectionProvider.selection = null;
+        this.selectionProvider.editTemplate = null;
+    }
+    addQuestion() {
+        let question = new Question(this.section);
+        question.correctAnswer = '';
+        this.section.addChild(question);
+        this.selectionProvider.selection = question;
+        this.selectionProvider.editTemplate = null;
+    }
+    addSection() {
+        let section = new Section(this.section);
+        this.section.addChild(section);
+        this.selectionProvider.selection = section;
+        this.selectionProvider.editTemplate = null;
+    }
 }

@@ -10,6 +10,6 @@ export class SelectionProvider {
     @ObservableInput() selection: any;
     selectionObservable: Observable<any>;
     
-    @ObservableInput() editTemplate: TemplateRef<any>;
-    editTemplateObservable: Observable<TemplateRef<any>>;
+    @ObservableInput() editTemplate: TemplateRef<any> | null;
+    editTemplateObservable: Observable<TemplateRef<any> | null>;
 }

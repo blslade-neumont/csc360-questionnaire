@@ -59,7 +59,7 @@ export class TakeQuestionnaireComponent extends ComponentBase {
         this.currentPart = result.value || null;
         if (this.currentPart instanceof Question) {
             this.selectedAnswer = '';
-            this.answers = this.currentPart.getAnswers();
+            this.answers = this.currentPart.getRandomizedAnswers();
         }
         if (result.done) this.isDone = true;
         this.createBreadcrumbs();

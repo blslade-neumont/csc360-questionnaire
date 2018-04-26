@@ -8,5 +8,16 @@
 </div>
 
 <ng-template #editTemplate>
-    Edit section!
+    <form>
+        <div class="form-group">
+            <label for="section-name">Name</label>
+            <input type="text" class="form-control" name="section-name" [(ngModel)]="section.text" autofocus />
+        </div>
+        
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" (click)="addQuestion()">Add Question</button>
+            <button type="button" class="btn btn-secondary" (click)="addSection()">Add Section</button>
+            <button type="button" class="btn btn-danger" [disabled]="!section.getParent()" (click)="delete()">Delete</button>
+        </div>
+    </form>
 </ng-template>

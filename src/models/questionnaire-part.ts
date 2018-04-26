@@ -1,18 +1,13 @@
-import { Question } from './question';
-import { Section } from './section';
+
 
 export abstract class QuestionnairePart {
     constructor() { }
     
-    public static fromJson(json: any, parent: QuestionnairePart | null): QuestionnairePart {
-        switch (json.type) {
-        case 'question':
-            return Question.fromJson(json, parent);
-        case 'section':
-            return Section.fromJson(json, parent);
-        default:
-            throw new Error(`Not supported`);
-        }
+    get text(): string {
+        return this.getText();
+    }
+    set text(val: string) {
+        this.setText(val);
     }
     
     abstract getText(): string;

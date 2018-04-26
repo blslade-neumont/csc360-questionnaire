@@ -1,7 +1,7 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SelectionProvider } from 'services';
-import { Question } from 'models';
+import { Question, Section } from 'models';
 import { ComponentBase } from 'utils/components';
 import { ObservableInput } from 'utils';
 
@@ -27,4 +27,20 @@ export class EditQuestionComponent extends ComponentBase {
     
     @ObservableInput() @Input() question: Question;
     @Input('question-o') questionObservable: Observable<Question>;
+    
+    delete() {
+        (<Section>this.question.getParent()).removeChild(this.question);
+        this.selectionProvider.selection = null;
+        this.selectionProvider.editTemplate = null;
+    }
+    removeIncorrectAnswer(idx: number) {
+        this.question.getAnswers().splice(idx, 1);
+    }
+    addIncorrectAnswer() {
+        this.question.getAnswers().push('');
+    }
+    
+    trackByIndex(index: number, item: any) {
+        return index;
+    }
 }
