@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SelectionProvider } from 'services';
 import { Question, Section } from 'models';
@@ -16,6 +16,8 @@ export class EditQuestionComponent extends ComponentBase {
     ) {
         super();
     }
+    
+    @ViewChild('editTemplate') editTemplate: TemplateRef<any>;
     
     get isSelected() {
         return this.selectionProvider.selection === this.question;
@@ -42,5 +44,13 @@ export class EditQuestionComponent extends ComponentBase {
     
     trackByIndex(index: number, item: any) {
         return index;
+    }
+    
+    ngAfterViewInit() {
+        setTimeout(() => {
+            if (this.selectionProvider.selection === this.question) {
+                this.selectionProvider.editTemplate = this.editTemplate;
+            }
+        });
     }
 }

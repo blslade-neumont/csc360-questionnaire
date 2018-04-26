@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SelectionProvider } from 'services';
 import { Section, Question } from 'models';
@@ -16,6 +16,8 @@ export class EditSectionComponent extends ComponentBase {
     ) {
         super();
     }
+    
+    @ViewChild('editTemplate') editTemplate: TemplateRef<any>;
     
     get isSelected() {
         return this.selectionProvider.selection === this.section;
@@ -45,5 +47,13 @@ export class EditSectionComponent extends ComponentBase {
         this.section.addChild(section);
         this.selectionProvider.selection = section;
         this.selectionProvider.editTemplate = null;
+    }
+    
+    ngAfterViewInit() {
+        setTimeout(() => {
+            if (this.selectionProvider.selection === this.section) {
+                this.selectionProvider.editTemplate = this.editTemplate;
+            }
+        });
     }
 }
