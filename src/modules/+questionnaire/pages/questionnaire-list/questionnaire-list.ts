@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { QuestionnaireService } from 'services';
+import { Questionnaire } from 'models';
 import { ComponentBase } from 'utils/components';
 
 @Component({
@@ -11,5 +13,12 @@ export class QuestionnaireListComponent extends ComponentBase {
         private questionnaireService: QuestionnaireService
     ) {
         super();
+    }
+    
+    questionnairesObservable: Observable<Questionnaire[]>;
+    
+    ngOnInit() {
+        super.ngOnInit();
+        this.questionnairesObservable = this.questionnaireService.list();
     }
 }

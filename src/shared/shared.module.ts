@@ -1,14 +1,17 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 //Imports
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from "@angular/common";
 import { HttpModule } from "@angular/http";
 
-export const module_exports = [];
+//Declarations
+import { NgLet } from './directives/ng-let.directive';
 
-const imported_modules = [ReactiveFormsModule, CommonModule, HttpModule];
-export const exported_modules = [ReactiveFormsModule, CommonModule, HttpModule];
+export const module_exports = [NgLet];
+
+const imported_modules = [FormsModule, CommonModule, HttpModule];
+export const exported_modules = [FormsModule, CommonModule, HttpModule];
 
 @NgModule({
     declarations: [...module_exports],

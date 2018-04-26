@@ -14,6 +14,7 @@
         "strictNullChecks": true,
         "alwaysStrict": true,
         "noImplicitAny": true,
+        "downlevelIteration": true,
         "pretty": true,
         "skipLibCheck": true,
         "lib": ["es6", "dom"],

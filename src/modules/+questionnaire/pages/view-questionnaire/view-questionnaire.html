@@ -3,14 +3,12 @@
         <div class="col-12" *ngIf="questionnaire; else notFound">
             <h1 class="mt-3">{{questionnaire.name}}</h1>
             
-            <p class="lead">Make your changes to the questionnaire</p>
+            <p class="lead">What do you want to do?</p>
             
             <p>
-                Editing questionnaire
-            </p>
-            
-            <p>
-                Actions...
+                <button class="btn btn-primary" [routerLink]="['..', 'take']">Take Questionnaire</button>
+                <button class="btn btn-secondary" [routerLink]="['..', 'edit']">Edit Questionnaire</button>
+                <button class="btn btn-danger" (click)="deleteQuestionnaire()">Delete Questionnaire</button>
             </p>
         </div>
         

@@ -1,0 +1,34 @@
+[{
+    "name": "Sample Questionnaire 1",
+    "parts": [{
+        "type": "section",
+        "text": "Random Trivia",
+        "parts": [{
+            "type": "question",
+            "text": "Which mythological creature is half eagle, half lion?",
+            "answers": ["Griffin", "Dragon", "Zebra", "Dinosoar"]
+        }, {
+            "type": "question",
+            "text": "What was the scarecrow in 'The Wizard of Oz' lacking?",
+            "answers": ["Brain", "Heart", "Liver", "Esophagus"]
+        }, {
+            "type": "question",
+            "text": "One of Oscar Wilde's best-known works is a play titled 'The Importance of Being ___'?",
+            "answers": ["Earnest", "Pretty", "Important", "Famous"]
+        }]
+    }, {
+        "type": "question",
+        "text": "Whose first and last initials form the acronym B.S.?",
+        "answers": ["Brandon Slade", "Bededict Cumberbacht", "Robert Stein", "Alan Turing"]
+    }]
+}, {
+    "name": "Sample Questionnaire 2",
+    "parts": [{
+        "type": "question",
+        "text": "What was pinnochio's father's name?",
+        "answers": ["Geppetto", "Robert", "Mickey", "John"]
+    }]
+}, {
+    "name": "Empty Questionnaire 1",
+    "parts": []
+}]

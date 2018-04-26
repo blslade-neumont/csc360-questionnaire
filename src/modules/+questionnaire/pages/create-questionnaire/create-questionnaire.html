@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mt-3">Create Questionnaire</h1>
+            
+            <p class="lead">Select a name:</p>
+            
+            <form>
+                <input type="text" class="form-control" [(ngModel)]="name" placeholder="Questionnaire Name" />
+                
+                <button class="btn btn-primary" [routerLink]="['create']" [disabled]="!(isValidNameObservable | async)">Create Questionnaire</button>
+            </form>
+        </div>
+    </div>
+</div>
