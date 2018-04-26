@@ -14,11 +14,7 @@
                 <h1 class="mt-3">Node Properties</h1>
                 
                 <ng-container *ngIf="selection; else noSelection">
-                    {{selection.getText()}}
-                    
-                    <p>
-                        Actions...
-                    </p>
+                    <ng-container *ngTemplateOutlet="editTemplateObservable | async; context: selection"></ng-container>
                 </ng-container>
                 
                 <ng-template #noSelection>

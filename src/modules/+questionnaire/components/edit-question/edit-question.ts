@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SelectionProvider } from 'services';
 import { Question } from 'models';
@@ -20,8 +20,9 @@ export class EditQuestionComponent extends ComponentBase {
     get isSelected() {
         return this.selectionProvider.selection === this.question;
     }
-    select() {
+    select(editTemplate: TemplateRef<any>) {
         this.selectionProvider.selection = this.question;
+        this.selectionProvider.editTemplate = editTemplate;
     }
     
     @ObservableInput() @Input() question: Question;

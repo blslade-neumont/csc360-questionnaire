@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { QuestionnaireService, QuestionnaireProvider, SelectionProvider } from 'services';
 import { Questionnaire } from 'models';
@@ -20,10 +20,12 @@ export class EditQuestionnaireComponent extends ComponentBase implements OnInit 
     
     questionnaireObservable: Observable<Questionnaire | null>;
     selectionObservable: Observable<any>;
+    editTemplateObservable: Observable<TemplateRef<any>>;
     
     ngOnInit() {
         super.ngOnInit();
         this.questionnaireObservable = this.questionnaireProvider.questionnaireObservable;
         this.selectionObservable = this.selectionProvider.selectionObservable;
+        this.editTemplateObservable = this.selectionProvider.editTemplateObservable;
     }
 }

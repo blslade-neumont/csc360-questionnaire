@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ObservableInput } from 'utils';
 import { Questionnaire } from 'models';
@@ -9,4 +9,7 @@ export class SelectionProvider {
     
     @ObservableInput() selection: any;
     selectionObservable: Observable<any>;
+    
+    @ObservableInput() editTemplate: TemplateRef<any>;
+    editTemplateObservable: Observable<TemplateRef<any>>;
 }

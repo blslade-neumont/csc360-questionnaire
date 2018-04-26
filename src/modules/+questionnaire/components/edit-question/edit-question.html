@@ -1,3 +1,7 @@
-<div class="part-header" [class.selected]="isSelected" (click)="select()">
+<div class="part-header" [class.selected]="isSelected" (click)="select(editTemplate)">
     <strong>Q</strong>: {{question?.getText()}}
 </div>
+
+<ng-template #editTemplate>
+    Edit question!
+</ng-template>
